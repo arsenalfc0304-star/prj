@@ -12,7 +12,7 @@ def get_mask_account(account_number: str) -> str:
     """
     принимает на вход номер счета и возвращает его маску
     """
-    if not account_number.isdigit():
+    if not account_number.isdigit() or account_number == "":
         return "Номер счета введен некорректно"
     else:
         return "**" + account_number[-4:]
