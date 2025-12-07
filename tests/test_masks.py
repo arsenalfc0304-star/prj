@@ -16,7 +16,7 @@ def test_get_mask_card_number(string: str, expected_result: str) -> str:
 @pytest.mark.parametrize("string, expected_result", [
     ("7000792289606361", "**6361"),
     ("700079228960636A", "Номер счета введен некорректно"),
-    ("", "Номер счета введен некорректно"),
+    ("", "Номер счета введен некорректно")
 ])
 def test_get_mask_account(string: str, expected_result: str) -> str:
     assert get_mask_account(string) == expected_result

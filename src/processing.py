@@ -1,6 +1,6 @@
 def filter_by_state(dict_list: list, state: str = "EXECUTED") -> list:
     """
-    принимает список словарей и опционально значение для ключа state (по умолчанию 'EXECUTED'),
+    принимает список словарей и опционально значение для ключа state (по умолчанию "EXECUTED"),
     возвращает новый список словарей, содержащий только словари, у которых ключ state соответствует указанному значению
     """
     return list(filter(lambda x: x["state"] == state, dict_list))
