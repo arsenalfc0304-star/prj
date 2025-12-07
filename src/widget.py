@@ -20,7 +20,8 @@ def get_date(date: str) -> str:
     принимает на вход строку с датой в формате "ГГГГ-ММ-ДДT02:26:18.671407"
     и возвращает строку с датой в формате "ДД.ММ.ГГГГ"
     """
-    if date[4] == "-" and date[7] == "-":
+    if (len(date) >= 10 and date[4] == "-" and date[7] == "-" and date[0:4].isdigit() and date[5:7].isdigit()
+            and int(date[5:7]) <= 12 and date[8:10].isdigit()) and int(date[8:10]) <= 31:
         return date[8:10] + "." + date[5:7] + "." + date[0:4]
     else:
         return "Дата введена некорректно"
