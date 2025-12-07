@@ -10,7 +10,8 @@ from src.widget import get_date, mask_account_card
     ("Сет 35383033474447895560", "Номер введен некорректно"),
     ("Visa Classic 6831982476737658", "Номер введен некорректно"),
     ("Visa Platinum 8990922113665229", "Visa Platinum 8990 92** **** 5229"),
-    ("5999414228426353", "Номер введен некорректно")
+    ("5999414228426353", "Номер введен некорректно"),
+    ("", "Номер введен некорректно")
 ])
 def test_mask_account_card(string: str, expected_result: str) -> str:
     assert mask_account_card(string) == expected_result
