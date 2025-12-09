@@ -14,6 +14,7 @@ from src.widget import get_date, mask_account_card
 ])
 def test_mask_account_card(string: str, expected_result: str) -> str:
     assert mask_account_card(string) == expected_result
+    return "str"
 
 
 @pytest.mark.parametrize("string, expected_result", [
@@ -25,4 +26,4 @@ def test_mask_account_card(string: str, expected_result: str) -> str:
 ])
 def test_get_date(string: str, expected_result: str) -> str:
     assert get_date(string) == expected_result
-
+    return "str"
