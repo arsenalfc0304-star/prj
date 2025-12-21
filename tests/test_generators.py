@@ -2,8 +2,6 @@ import pytest
 
 from generators import card_number_generator, filter_by_currency, transaction_descriptions
 
-from typing import Iterator
-
 
 @pytest.fixture
 def transactions() -> list:
@@ -76,6 +74,8 @@ def test_filter_by_currency(transactions: list) -> dict:
         "from": "Счет 19708645243227258542",
         "to": "Счет 75651667383060284188",
     }
+
+
 def test_empty_filter_by_currency(transactions: list) -> dict:
     incorrect_currency_transactions = filter_by_currency(transactions, "XXX")
     assert list(incorrect_currency_transactions) == []
@@ -91,15 +91,29 @@ def test_transaction_descriptions(transactions: list) -> str:
     assert next(descriptions) == "Перевод с карты на карту"
     assert next(descriptions) == "Перевод организации"
 
+
 def test_empty_transaction_descriptions(transactions: list) -> str:
     empty_descriptions = transaction_descriptions([])
     assert list(empty_descriptions) == []
 
-@pytest.mark.parametrize("start, stop, expected_result", [
-    (1, 5, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003", "0000 0000 0000 0004", "0000 0000 0000 0005"]),
-     (5, 1, [])
-])
-def test_card_number_generator(start: int, stop: int, expected_result):
+
+@pytest.mark.parametrize(
+    "start, stop, expected_result",
+    [
+        (
+            1,
+            5,
+            [
+                "0000 0000 0000 0001",
+                "0000 0000 0000 0002",
+                "0000 0000 0000 0003",
+                "0000 0000 0000 0004",
+                "0000 0000 0000 0005",
+            ],
+        ),
+        (5, 1, []),
+    ],
+)
+def test_card_number_generator(start: int, stop: int, expected_result: list) -> list:
     card_numbers = list(card_number_generator(start, stop))
     assert card_numbers == expected_result
-
