@@ -28,7 +28,5 @@ def card_number_generator(start, stop):
         for y in range(0, 16 - len(str(x))):
             str1 += "0"
         str1 += str(x)
-        yield str1
+        yield str1[0:4] + " " + str1[4:8] + " " + str1[8:12] + " " + str1[12:]
         x += 1
-for card_number in card_number_generator(5, 1):
-    print(card_number)

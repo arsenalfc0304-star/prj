@@ -96,7 +96,7 @@ def test_empty_transaction_descriptions(transactions: list) -> str:
     assert list(empty_descriptions) == []
 
 @pytest.mark.parametrize("start, stop, expected_result", [
-    (1, 5, ["0000000000000001", "0000000000000002", "0000000000000003", "0000000000000004", "0000000000000005"]),
+    (1, 5, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003", "0000 0000 0000 0004", "0000 0000 0000 0005"]),
      (5, 1, [])
 ])
 def test_card_number_generator(start: int, stop: int, expected_result):
