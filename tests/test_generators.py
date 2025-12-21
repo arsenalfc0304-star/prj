@@ -91,6 +91,10 @@ def test_transaction_descriptions(transactions: list) -> str:
     assert next(descriptions) == "Перевод с карты на карту"
     assert next(descriptions) == "Перевод организации"
 
+def test_empty_transaction_descriptions(transactions: list) -> str:
+    empty_descriptions = transaction_descriptions([])
+    assert list(empty_descriptions) == []
+
 @pytest.mark.parametrize("start, stop, expected_result", [
     (1, 5, ["0000000000000001", "0000000000000002", "0000000000000003", "0000000000000004", "0000000000000005"]),
      (5, 1, [])
