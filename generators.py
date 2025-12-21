@@ -25,14 +25,12 @@ def card_number_generator(start, stop):
     Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.
     """
     x = start
-    while 1 <= x <= stop <= 9999999999999999:
+    while 1 <= x < stop <= 9999999999999999:
         str1 = ""
         for y in range(0, 16 - len(str(x))):
             str1 += "0"
         str1 += str(x)
         yield str1
         x += 1
-# for card_number in card_number_generator(9999999999999987, 9999999999999999):
-#    print(card_number)
-# print(next(card_number))
-# print(next(card_number))
+for card_number in card_number_generator(9999999999999987, 9999999999999999):
+    print(card_number)
