@@ -32,17 +32,7 @@ def card_number_generator(start, stop):
         str1 += str(x)
         yield str1
         x += 1
-
-
-# huy = filter_by_currency(transactions_list, "USB")
-# for _ in range(2):
-#    print(next(huy))
-
 # for card_number in card_number_generator(9999999999999987, 9999999999999999):
 #    print(card_number)
 # print(next(card_number))
 # print(next(card_number))
-
-# for _ in range(3):
-#   print(next(descriptions))
-#

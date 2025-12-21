@@ -82,3 +82,12 @@ def test_transaction_descriptions(transactions: list) -> str:
     assert next(descriptions) == "Перевод со счета на счет"
     assert next(descriptions) == "Перевод с карты на карту"
     assert next(descriptions) == "Перевод организации"
+
+@pytest.mark.parametrize("start, stop, expected_result", [
+    (1, 5, "0000000000000001"),
+    (0, 0, "")
+    ])
+def test_card_number_generator(start: int, stop: int, expected_result: str) -> None:
+    card_number = card_number_generator(start, stop)
+    assert next(card_number) == expected_result
+
