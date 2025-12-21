@@ -1,9 +1,11 @@
+#from tests.test_generators import transactions_list
+
 def filter_by_currency(transactions, currency):
     """
     принимает на вход список словарей, представляющих транзакции,
     возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной
     """
-    return filter(lambda item: item["currency"] == currency, transactions)
+    return filter(lambda item: item["operationAmount"]["currency"]["code"] == currency, transactions)
 
 
 def transaction_descriptions(transactions):
@@ -11,7 +13,6 @@ def transaction_descriptions(transactions):
     принимает список словарей с транзакциями,
     возвращает описание каждой операции по очереди
     """
-
     for x in transactions:
         yield x["description"]
 
@@ -31,18 +32,17 @@ def card_number_generator(start, stop):
         yield str1
         x += 1
 
-descriptions = transaction_descriptions(transactions)
+#descriptions = transaction_descriptions(transactions_list)
 
-# huy = filter_by_currency(transactions, "USB")
-# for _ in range(2):
-#     print(next(huy))
+#huy = filter_by_currency(transactions_list, "USB")
+#for _ in range(2):
+#    print(next(huy))
 
-for card_number in card_number_generator(9999999999999987, 9999999999999999):
-    print(card_number)
+#for card_number in card_number_generator(9999999999999987, 9999999999999999):
+#    print(card_number)
 #print(next(card_number))
 #print(next(card_number))
 
-
-for _ in range(3):
-  print(next(descriptions))
-
+# for _ in range(3):
+#   print(next(descriptions))
+#
