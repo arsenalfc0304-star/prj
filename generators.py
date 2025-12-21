@@ -1,4 +1,5 @@
-#from tests.test_generators import transactions_list
+# from tests.test_generators import transactions_list
+
 
 def filter_by_currency(transactions, currency):
     """
@@ -26,22 +27,21 @@ def card_number_generator(start, stop):
     x = start
     while 1 <= x <= stop <= 9999999999999999:
         str1 = ""
-        for y in range(0, 16-len(str(x))):
+        for y in range(0, 16 - len(str(x))):
             str1 += "0"
         str1 += str(x)
         yield str1
         x += 1
 
-#descriptions = transaction_descriptions(transactions_list)
 
-#huy = filter_by_currency(transactions_list, "USB")
-#for _ in range(2):
+# huy = filter_by_currency(transactions_list, "USB")
+# for _ in range(2):
 #    print(next(huy))
 
-#for card_number in card_number_generator(9999999999999987, 9999999999999999):
+# for card_number in card_number_generator(9999999999999987, 9999999999999999):
 #    print(card_number)
-#print(next(card_number))
-#print(next(card_number))
+# print(next(card_number))
+# print(next(card_number))
 
 # for _ in range(3):
 #   print(next(descriptions))
