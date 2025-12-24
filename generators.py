@@ -1,0 +1,35 @@
+from typing import Generator, Iterator
+
+
+def filter_by_currency(transactions: list, currency: str) -> Iterator:
+    """
+    принимает на вход список словарей, представляющих транзакции,
+    возвращает итератор, который поочередно выдает транзакции, где валюта операции соответствует заданной
+    """
+    # if currency in transactions:
+    return filter(lambda item: item["operationAmount"]["currency"]["code"] == currency, transactions)
+
+
+def transaction_descriptions(transactions: list) -> Generator:
+    """
+    принимает список словарей с транзакциями,
+    возвращает описание каждой операции по очереди
+    """
+    for x in transactions:
+        yield x["description"]
+
+
+def card_number_generator(start: int, stop: int) -> Generator:
+    """
+    принимает начальное и конечное значения для генерации диапазона номеров карт.
+    выдает номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра номера карты.
+    Генератор может сгенерировать номера карт в заданном диапазоне от 0000 0000 0000 0001 до 9999 9999 9999 9999.
+    """
+    x = start
+    while 1 <= x <= stop <= 9999999999999999:
+        str1 = ""
+        for y in range(0, 16 - len(str(x))):
+            str1 += "0"
+        str1 += str(x)
+        yield str1[0:4] + " " + str1[4:8] + " " + str1[8:12] + " " + str1[12:]
+        x += 1
