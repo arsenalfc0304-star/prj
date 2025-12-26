@@ -8,7 +8,7 @@ def log(filename):
             time_1 = time()
             result = func(*args, **kwargs)
             time_2 = time()
-            if os.path.exists(filename):
+            if not filename == "":
                 with open(filename, "r") as f:
                     with open(f"{filename}.txt", "a") as file:
                         file.write(result + "\n")
