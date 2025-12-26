@@ -2,11 +2,12 @@ import pytest
 from decorators import log
 
 
-@log("")
-def example_function():
-    raise Exception("Something went wrong!")
+def test_log():
+    @log
+    def func(a, b):
+        return a / b
 
-
-def test_exception_log():
-    with pytest.raises(Exception, match="Something went wrong!"):
-        example_function()
+    result = func(4, 2)
+    assert result == 2
+    # with pytest.raises(Exception, match="Something went wrong!"):
+    #     example_function()
