@@ -10,7 +10,7 @@ def log(filename):
             time_2 = time()
             if not filename == "":
                 with open(filename, "r") as f:
-                    with open(f"{filename}.txt", "a") as file:
+                    with open(filename, "a") as file:
                         file.write(result + "\n")
             else:
                 print(result)
