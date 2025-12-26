@@ -6,9 +6,12 @@ def log(filename):
             result = func(*args, **kwargs)
             if os.path.exists(filename):
                 with open(filename, "r") as f:
-                    with open('example.txt', 'a') as file:
+                    with open(f'{filename}.txt', 'a') as file:
                         file.write(result + '\n')
             else:
                 print(result)
+
+        return wrapper
+    return decorator
 
 
