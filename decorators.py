@@ -7,8 +7,8 @@ def log(filename):
             if os.path.exists(filename):
                 with open(filename, "r") as f:
                     with open('example.txt', 'a') as file:
-                        file.write(result.\n')
+                        file.write(result + '\n')
             else:
-                        print(result)
+                print(result)
 
 
