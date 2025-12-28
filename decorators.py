@@ -13,6 +13,7 @@ def log(filename=""):
                 else:
                     with open(filename, "a") as file:
                         file.write(f"{func.__name__} ok\n")
+                return result
             except Exception as e:
                 if filename == "":
                     print(f"{func.__name__} error: {e}. Inputs: ({args}, {kwargs})")
