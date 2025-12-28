@@ -14,5 +14,4 @@ def test_log():
 
 def test_exception_log():
     @log
-    result = func(4, 0)
-    with pytest.raises(Exception, match="Something went wrong!")
+    assert pytest.raises(Exception, match="Something went wrong!")
