@@ -1,4 +1,9 @@
-def log(filename):
+def log(filename=""):
+    """
+    автоматически логирует начало и конец выполнения функции, а также ее результаты или возникшие ошибки,
+    принимает необязательный аргумент filename, который определяет, куда будут записываться логи (в файл или в консоль)
+    """
+
     def decorator(func):
         def wrapper(*args, **kwargs):
             try:
@@ -18,9 +23,3 @@ def log(filename):
         return wrapper
 
     return decorator
-
-@log("")
-def example_func(a, b):
-    return a / b
-
-example_func(5, 0)

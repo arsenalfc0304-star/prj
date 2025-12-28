@@ -1,17 +1,18 @@
-import pytest
 from decorators import log
 
 
-def test_log():
-    @log
-    def func(a, b):
-        return a / b
+@log()
+def example_func(a, b):
+    return a / b
 
-    result = func(4, 2)
-    assert result == 2.0
-    # with pytest.raises(Exception, match="Something went wrong!"):
-    #     example_function()
 
-def test_exception_log():
-    @log
-    assert pytest.raises(Exception, match="Something went wrong!")
+def test_log(capsys):
+    example_func(4, 5)
+    captured = capsys.readouterr()
+    assert captured.out == "example_func ok\n"
+
+
+def test_exception_log(capsys):
+    example_func(4, 0)
+    captured = capsys.readouterr()
+    assert captured.out == "example_func error: division by zero. Inputs: ((4, 0), {})\n"
