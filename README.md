@@ -23,6 +23,12 @@ pip install -r requirements.txt
 
 ## Тестирование:
 Для тестирования выполните в командной строке команду *pytest*.
+реализованы модули:
+*test_masks.py*,
+*test_widget.py*,
+*test_processing.py*,
+*test_generators.py*,
+*test_decorators.py*.
 
 ## Документация:
 
