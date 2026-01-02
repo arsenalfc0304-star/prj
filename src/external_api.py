@@ -16,6 +16,6 @@ def convert_to_rub(amount: float, currency_from: str) -> float:
     status_code = response.status_code
     result = response.json()
     if status_code == 200:
-        return result["result"]
+        print(result["result"])
 
 #convert_to_rub(amount=100, currency_from="USD")

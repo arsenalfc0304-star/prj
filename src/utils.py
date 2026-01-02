@@ -24,7 +24,6 @@ def transaction_rub(transaction: dict) -> float:
     происходит обращение к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли
     """
     if transaction["operationAmount"]["currency"]["code"] == "USD" or transaction["operationAmount"]["currency"]["code"] == "EUR":
-
         convert_to_rub(float(transaction["operationAmount"]["amount"]), transaction["operationAmount"]["currency"]["code"])
     elif transaction["operationAmount"]["currency"]["code"] == "RUB":
         return float(transaction["operationAmount"]["amount"])
@@ -42,4 +41,4 @@ transaction1 = {
         }
     }
 
-print(transaction_rub(transaction1))
+transaction_rub(transaction1)
