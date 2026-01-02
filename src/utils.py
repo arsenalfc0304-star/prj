@@ -1,9 +1,8 @@
 import json
 
-from external_api import convert_to_rub
+from src.external_api import convert_to_rub
 
-# import convert_to_rub
-
+#import convert_to_rub
 
 def load_json(path):
     """
@@ -25,22 +24,22 @@ def transaction_rub(transaction: dict) -> float:
     Если транзакция была в USD или EUR,
     происходит обращение к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли
     """
-    if transaction["currency"] == "USD" or transaction["currency"] == "EUR":
-        print(convert_to_rub(transaction["amount"], transaction["currency"]["code"]))
+    if transaction["operationAmount"]["amount"]["currency"] == "USD" or transaction["operationAmount"]["amount"]["currency"] == "EUR":
+        convert_to_rub(transaction["operationAmount"]["amount"], transaction["operationAmount"]["currency"]["code"])
     else:
         return float(transaction["operationAmount"]["amount"]) * float(transaction["operationAmount"]["currency"]["code"])
 
-transaction_rub(
-    {
-        "id": 560813069,
-        "state": "CANCELED",
-        "date": "2019-12-03T04:27:03.427014",
-        "operationAmount": {
-            "amount": "17628.50",
-            "currency": {
-                "name": "USD",
-                "code": "USD"
-                }
+transaction1 = {
+    "id": 560813069,
+    "state": "CANCELED",
+    "date": "2019-12-03T04:27:03.427014",
+    "operationAmount": {
+        "amount": "17628.50",
+        "currency": {
+            "name": "USD",
+            "code": "USD"
             }
+        }
     }
-)
+
+transaction_rub(transaction1)
