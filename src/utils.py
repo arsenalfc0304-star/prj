@@ -36,11 +36,11 @@ def transaction_rub(transaction: dict) -> float:
         return float(transaction["operationAmount"]["amount"])
 
 
-transaction1 = {
-    "id": 560813069,
-    "state": "CANCELED",
-    "date": "2019-12-03T04:27:03.427014",
-    "operationAmount": {"amount": "17628.50", "currency": {"name": "USD", "code": "USD"}},
-}
-
-transaction_rub(transaction1)
+# transaction1 = {
+#     "id": 560813069,
+#     "state": "CANCELED",
+#     "date": "2019-12-03T04:27:03.427014",
+#     "operationAmount": {"amount": "17628.50", "currency": {"name": "USD", "code": "USD"}},
+# }
+#
+# transaction_rub(transaction1)
