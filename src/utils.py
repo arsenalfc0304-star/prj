@@ -1,5 +1,9 @@
 import json
 
+from external_api import convert_to_rub
+
+# import convert_to_rub
+
 
 def load_json(path):
     """
@@ -13,9 +17,7 @@ def load_json(path):
     except Exception:
         return []
 
-
 print(load_json("data/operations.json"))
-
 
 def transaction_rub(transaction: dict) -> float:
     """
@@ -24,6 +26,21 @@ def transaction_rub(transaction: dict) -> float:
     происходит обращение к внешнему API для получения текущего курса валют и конвертации суммы операции в рубли
     """
     if transaction["currency"] == "USD" or transaction["currency"] == "EUR":
+        print(convert_to_rub(transaction["amount"], transaction["currency"]["code"]))
+    else:
+        return float(transaction["operationAmount"]["amount"]) * float(transaction["operationAmount"]["currency"]["code"])
 
-
-    return float(transaction["amount"]) * float(transaction["currency"])
+transaction_rub(
+    {
+        "id": 560813069,
+        "state": "CANCELED",
+        "date": "2019-12-03T04:27:03.427014",
+        "operationAmount": {
+            "amount": "17628.50",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+                }
+            }
+    }
+)
