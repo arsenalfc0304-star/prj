@@ -1,6 +1,6 @@
 import json
 
-from external_api import convert_to_rub
+from external_api import get_api_convertion_to_rub
 
 
 def load_json(path):
@@ -16,7 +16,7 @@ def load_json(path):
         return []
 
 
-# print(load_json("data/operations.json"))
+print(load_json("data/operations.json"))
 
 
 def transaction_rub(transaction: dict) -> float:
@@ -29,7 +29,7 @@ def transaction_rub(transaction: dict) -> float:
         transaction["operationAmount"]["currency"]["code"] == "USD"
         or transaction["operationAmount"]["currency"]["code"] == "EUR"
     ):
-        convert_to_rub(
+        get_api_convertion_to_rub(
             float(transaction["operationAmount"]["amount"]), transaction["operationAmount"]["currency"]["code"]
         )
     elif transaction["operationAmount"]["currency"]["code"] == "RUB":
