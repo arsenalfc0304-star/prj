@@ -29,7 +29,8 @@ pip install -r requirements.txt
 *test_processing.py*,
 *test_generators.py*,
 *test_decorators.py*,
-*test_utils.py*.
+*test_utils.py*,
+*test_external_api.py*.
 
 ## Документация:
 

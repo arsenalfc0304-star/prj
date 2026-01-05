@@ -1,6 +1,5 @@
 from unittest.mock import Mock, patch
 
-from src.external_api import get_api_convertion_to_rub
 from src.utils import load_json
 
 
@@ -17,21 +16,11 @@ def test_load_json():
     }
 
 
-def test_get_api_convertion_to_rub_success():
+def test_transaction_rub_success():
     mock_response = Mock()
     mock_response.status_code = 200
     mock_response.json.return_value = {"result": 999.9}
 
     with patch("requests.get", return_value=mock_response):
-        result = get_api_convertion_to_rub(99.9, "USD")
+        result = transaction_rub(99.9, "USD")
         assert result == 999.9
-
-
-def test_get_api_convertion_to_rub_fault():
-    mock_response = Mock()
-    mock_response.status_code = 500
-    mock_response.json.return_value = {"result": 999.9}
-
-    with patch("requests.get", return_value=mock_response):
-        result = get_api_convertion_to_rub(99.9, "USD")
-        assert result == 0

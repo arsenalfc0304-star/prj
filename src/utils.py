@@ -12,11 +12,8 @@ def load_json(path):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
             return data
-    except Exception:
+    except json.JSONDecodeError or FileNotFoundError:
         return []
-
-
-print(load_json("data/operations.json"))
 
 
 def transaction_rub(transaction: dict) -> float:
@@ -29,8 +26,25 @@ def transaction_rub(transaction: dict) -> float:
         transaction["operationAmount"]["currency"]["code"] == "USD"
         or transaction["operationAmount"]["currency"]["code"] == "EUR"
     ):
-        get_api_convertion_to_rub(
-            float(transaction["operationAmount"]["amount"]), transaction["operationAmount"]["currency"]["code"]
-        )
+        return float(get_api_convertion_to_rub(transaction))
     elif transaction["operationAmount"]["currency"]["code"] == "RUB":
         return float(transaction["operationAmount"]["amount"])
+    else:
+        return 0.0
+
+
+# test code
+# transaction_rub(
+#     {
+#         "id": 560813069,
+#         "state": "CANCELED",
+#         "date": "2019-12-03T04:27:03.427014",
+#         "operationAmount": {
+#             "amount": "17628.50",
+#             "currency": {
+#                 "name": "USD",
+#                 "code": "USD"
+#                 }
+#             }
+#         }
+# )
