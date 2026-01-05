@@ -12,7 +12,7 @@ def load_json(path):
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
             return data
-    except json.JSONDecodeError or FileNotFoundError:
+    except Exception:
         return []
 
 
