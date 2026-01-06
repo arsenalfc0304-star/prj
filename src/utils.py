@@ -15,7 +15,7 @@ def load_json(path):
             utils_logger.info(f'возвращаем список словарей с данными о финансовых транзакциях из файла {path}')
             return data
     except Exception as e:
-        utils_logger.error(f'произошла ошибка {e}')
+        utils_logger.error(f'произошла ошибка получения данных о транзакции {e}')
         return []
 
 
@@ -36,6 +36,5 @@ def transaction_rub(transaction: dict) -> float:
         utils_logger.info(f'выдаем сумму транзакции в рублях')
         return float(transaction["operationAmount"]["amount"])
     else:
-        utils_logger.error(f'получаем сумму операции после конвертации из'
-                          f'{transaction["operationAmount"]["currency"]["code"]} в рубли по текущему курсу валют')
+        utils_logger.error(f'валюта транзакции не определена')
         return 0.0
