@@ -2,6 +2,7 @@ import json
 
 from external_api import get_api_convertion_to_rub
 
+from loggers import utils_logger
 
 def load_json(path):
     """
@@ -11,8 +12,10 @@ def load_json(path):
     try:
         with open(path, encoding="utf-8") as f:
             data = json.load(f)
+            utils_logger.info(f'возвращаем список словарей с данными о финансовых транзакциях из файла {path}')
             return data
-    except Exception:
+    except Exception as e:
+        utils_logger.error(f'произошла ошибка {e}')
         return []
 
 
@@ -26,8 +29,13 @@ def transaction_rub(transaction: dict) -> float:
         transaction["operationAmount"]["currency"]["code"] == "USD"
         or transaction["operationAmount"]["currency"]["code"] == "EUR"
     ):
+        utils_logger.info(f'выдаем сумму транзакции после конвертации из'
+                          f'{transaction["operationAmount"]["currency"]["code"]} в рубли по текущему курсу валют')
         return float(get_api_convertion_to_rub(transaction))
     elif transaction["operationAmount"]["currency"]["code"] == "RUB":
+        utils_logger.info(f'выдаем сумму транзакции в рублях')
         return float(transaction["operationAmount"]["amount"])
     else:
+        utils_logger.error(f'получаем сумму операции после конвертации из'
+                          f'{transaction["operationAmount"]["currency"]["code"]} в рубли по текущему курсу валют')
         return 0.0
