@@ -1,8 +1,9 @@
 import pandas as pd
 
 
-def get_csv_data(path: str) -> list:
-   result = pd.read_csv(path)
-   print(result.head())
+def read_data_from_csv(path: str) -> list:
+    data = pd.read_csv(path).head()
+    print(data.to_dict(orient='list'))
 
-get_csv_data("data/transactions.csv")
+
+read_data_from_csv("data/transactions.csv")
