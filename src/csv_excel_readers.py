@@ -1,4 +1,8 @@
 import pandas as pd
 
-wine_reviews = pd.read_csv("data/transactions.csv")
-print(wine_reviews.head())
+
+def get_csv_data(path: str) -> list:
+   result = pd.read_csv(path)
+   print(result.head())
+
+get_csv_data("data/transactions.csv")
