@@ -7,6 +7,7 @@ def read_data_from_csv(path: str) -> list:
     выдает список словарей с транзакциями
     """
     data = pd.read_csv(path)
+    #print(data.set_index('ID').T.to_dict('list'))
     print(data.to_dict(orient='records'))
 
 
