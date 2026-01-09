@@ -8,7 +8,7 @@ def read_data_from_csv(path: str) -> list:
     """
     data = pd.read_csv(path)
     #print(data.set_index('ID').T.to_dict('list'))
-    print(data.to_dict(orient='records'))
+    return data.to_dict(orient='records')
 
 
 def read_data_from_excel(path: str) -> list:
@@ -17,9 +17,4 @@ def read_data_from_excel(path: str) -> list:
     выдает список словарей с транзакциями
     """
     data = pd.read_excel(path)
-    print(data.to_dict(orient='records'))
-
-
-read_data_from_csv("data/transactions.csv")
-
-#read_data_from_excel("data/transactions_excel.xlsx")
+    return data.to_dict(orient='records')

@@ -3,33 +3,43 @@ import pytest
 
 import pandas as pd
 
+import src.csv_excel_readers
 from src.csv_excel_readers import read_data_from_csv, read_data_from_excel
 
 
 @pytest.fixture
 def sample_df():
     sample_dict = {
-        "id": [560813069, 560813069],
-        "state": ["CANCELED", "CANCELED"],
-        "date": ["2019-12-03T04:27:03.427014", "2019-12-03T04:27:03.427014"]
+        'id': [1, 2],
+        'state': ['CANCELED', 'CANCELED']
     }
     return pd.DataFrame(sample_dict)
 
 
-def test_read_data_from_csv():
-    mock_path = Mock()
-    mock_path.return_value = sample_df
-    with patch('path'):
-    assert read_data_from_csv(mock_path) == (
-        {
-            "id": 560813069,
-            "state": "CANCELED",
-            "date": "2019-12-03T04:27:03.427014"
+def test_read_data_from_csv(sample_df):
+    with patch('src.csv_excel_readers.pd.read_csv', return_value=sample_df):
+        result = read_data_from_csv('data/transactions.xlsx')
+        assert result == [
+            {
+                'id': 1,
+                'state': 'CANCELED'
+            },
+            {
+                'id': 2,
+                'state': 'CANCELED'
+            }
+        ]
 
-        },
-        {
-            "id": 560813069,
-            "state": "CANCELED",
-            "date": "2019-12-03T04:27:03.427014"
-        }
-    )
+def test_read_data_from_excel(sample_df):
+    with patch('src.csv_excel_readers.pd.read_excel', return_value=sample_df):
+        result = read_data_from_excel('data/transactions_excel.xlsx')
+        assert result == [
+            {
+                'id': 1,
+                'state': 'CANCELED'
+            },
+            {
+                'id': 2,
+                'state': 'CANCELED'
+            }
+        ]
