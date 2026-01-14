@@ -1,3 +1,5 @@
+import re
+
 def filter_by_state(dict_list: list, state: str = "EXECUTED") -> list:
     """
     принимает список словарей и опционально значение для ключа state (по умолчанию "EXECUTED"),
@@ -15,7 +17,15 @@ def sort_by_date(dict_list: list, descending: bool = True) -> list:
 
 
 def process_bank_search(dict_list:list[dict], search:str)->list[dict]:
-    pass
+    """
+    принимает список словарей с данными о банковских операциях и строку поиска,
+    возвращает список словарей, у которых в описании есть данная строка
+    """
+    filtered_dict_list = []
+    for transaction in dict_list:
+        if not re.search(search, transaction["description"]) == None:
+            filtered_dict_list.append(transaction)
+    return filtered_dict_list
 
 
 def process_bank_operations(data:list[dict], categories:list)->dict:
