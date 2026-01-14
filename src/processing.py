@@ -12,3 +12,11 @@ def sort_by_date(dict_list: list, descending: bool = True) -> list:
     возвращает новый список, отсортированный по дате (date)
     """
     return sorted(dict_list, key=lambda x: x["date"], reverse=descending)
+
+
+def process_bank_search(dict_list:list[dict], search:str)->list[dict]:
+    pass
+
+
+def process_bank_operations(data:list[dict], categories:list)->dict:
+    pass
