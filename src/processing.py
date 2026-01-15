@@ -1,4 +1,5 @@
 import re
+from collections import Counter
 
 def filter_by_state(dict_list: list, state: str = "EXECUTED") -> list:
     """
@@ -28,5 +29,15 @@ def process_bank_search(dict_list:list[dict], search:str)->list[dict]:
     return filtered_dict_list
 
 
-def process_bank_operations(data:list[dict], categories:list)->dict:
-    pass
+def process_bank_operations(dict_list:list[dict], categories:list)->dict:
+    """
+    принимает список словарей с данными о банковских операциях и список категорий операций,
+    возвращает словарь (ключи — это названия категорий, значения — это количество операций в каждой категории)
+    """
+    categories_counting = []
+    for category in categories:
+        for transaction in dict_list:
+            if transaction["description"] == category:
+                categories_counting.append(category)
+    result = Counter(categories_counting)
+    return dict(result)
