@@ -32,7 +32,7 @@ def main():
             "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
         )
         status_chosen = input("Пользователь:  ").strip().upper()
-    print(f"Программа: Операции отфильтрованы по статусу {status_chosen}")
+    print(f"Программа: Операции отфильтрованы по статусу \"{status_chosen.upper()}\"")
 
 
 main()
