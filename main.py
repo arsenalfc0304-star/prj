@@ -1,3 +1,6 @@
+from src.utils import load_json
+from src.csv_excel_readers import read_data_from_csv, read_data_from_excel
+
 def main():
     print("Программа: Привет! Добро пожаловать в программу работы\n" "с банковскими транзакциями.")
     # выбор источника данных
@@ -71,5 +74,7 @@ def main():
     print("Программа:\n"
           "Всего банковских операций в выборке: 4"
           )
+
+
 
 main()
