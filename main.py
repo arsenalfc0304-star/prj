@@ -1,5 +1,7 @@
 from src.utils import load_json
 from src.csv_excel_readers import read_data_from_csv, read_data_from_excel
+from src.processing import filter_by_state, sort_by_date
+
 
 def main():
     print("Программа: Привет! Добро пожаловать в программу работы\n" "с банковскими транзакциями.")
@@ -74,6 +76,15 @@ def main():
     print("Программа:\n"
           "Всего банковских операций в выборке: 4"
           )
+
+    if int(source_chosen) == 1:
+        load_json("data/operations.json")
+    elif int(source_chosen) == 2:
+        read_data_from_csv("data/transactions.csv")
+    elif int(source_chosen) == 3:
+        read_data_from_csv("data/transactions_excel.xlsx")
+
+
 
 
 
