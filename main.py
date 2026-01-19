@@ -13,13 +13,13 @@ def main():
         "3. Получить информацию о транзакциях из XLSX-файла\n"
     )
 
-    sources_allowed = {1: "JSON", 2: "CSV", 3: "XLSX"}
+    sources_allowed = {"1": "JSON", "2": "CSV", "3": "XLSX"}
     source_chosen = input("Пользователь:  ").strip()
 
-    while int(source_chosen) not in sources_allowed.keys():
+    while source_chosen not in sources_allowed.keys():
         print("Программа: Пункт меню выбран не корректно. Введите 1 или 2 или 3.\n")
         source_chosen = input("Пользователь:  ").strip()
-    print(f"Программа: Для обработки выбран {sources_allowed[int(source_chosen)]}-файл.")
+    print(f"Программа: Для обработки выбран {sources_allowed[source_chosen]}-файл.")
 
     # 2 выбор статуса транзакций
     print(
@@ -53,7 +53,7 @@ def main():
             print("Программа: Ответ некорректный. Отсортировать по возрастанию или по убыванию?")
             is_sorted_descending = input("Пользователь:  ")
 
-    # запрос валюты
+    # 4 запрос валюты
     print("Программа: Выводить только рублевые транзакции? Да/Нет")
     only_rub_transactions = input("Пользователь:  ").strip()
     while only_rub_transactions.lower() not in ("да", "нет"):
@@ -72,11 +72,17 @@ def main():
         with_filter = input("Пользователь:  ").strip()
 
     # вывод результата
+    result = sort_by_date(filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper()))
     print("Программа: Распечатываю итоговый список транзакций...")
     print("Программа:\n"
-          "Всего банковских операций в выборке: 4"
+          f"Всего банковских операций в выборке: {len(result)}\n"
           )
+    if source_chosen == "3":
+        result = filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper())
 
-    print(sort_by_date(filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper())))#, is_sorted_descending=="по убыванию")
+    if is_sorted_by_date == "да":
+        result = sort_by_date(result, descending=(is_sorted_descending=="по убыванию"))
 
-# main()
+    print(result)
+
+main()
