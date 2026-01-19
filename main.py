@@ -5,7 +5,7 @@ from src.processing import filter_by_state, sort_by_date
 
 def main():
     print("Программа: Привет! Добро пожаловать в программу работы\n" "с банковскими транзакциями.")
-    # выбор источника данных
+    # 1 выбор источника данных
     print(
         "Выберите необходимый пункт меню:\n"
         "1. Получить информацию о транзакциях из JSON-файла\n"
@@ -21,7 +21,7 @@ def main():
         source_chosen = input("Пользователь:  ").strip()
     print(f"Программа: Для обработки выбран {sources_allowed[int(source_chosen)]}-файл.")
 
-    # выбор статуса транзакций
+    # 2 выбор статуса транзакций
     print(
         "Программа: Введите статус, по которому необходимо выполнить фильтрацию.\n"
         "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING"
@@ -39,7 +39,7 @@ def main():
         status_chosen = input("Пользователь:  ").strip()
     print(f"Программа: Операции отфильтрованы по статусу \"{status_chosen.upper()}\"")
 
-    # запрос сортировки по дате
+    # 3 запрос сортировки по дате
     print("Программа: Отсортировать операции по дате? Да/Нет")
     is_sorted_by_date = input("Пользователь:  ").strip()
     while is_sorted_by_date.lower() not in ("да", "нет"):
@@ -77,15 +77,6 @@ def main():
           "Всего банковских операций в выборке: 4"
           )
 
-    if int(source_chosen) == 1:
-        load_json("data/operations.json")
-    elif int(source_chosen) == 2:
-        read_data_from_csv("data/transactions.csv")
-    elif int(source_chosen) == 3:
-        read_data_from_csv("data/transactions_excel.xlsx")
+    print(sort_by_date(filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper())))#, is_sorted_descending=="по убыванию")
 
-
-
-
-
-main()
+# main()
