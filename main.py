@@ -1,6 +1,7 @@
 from src.utils import load_json
 from src.csv_excel_readers import read_data_from_csv, read_data_from_excel
-from src.processing import filter_by_state, sort_by_date
+from src.processing import filter_by_state, sort_by_date, process_bank_search
+from src.widget import mask_account_card
 
 
 def main():
@@ -71,18 +72,45 @@ def main():
               "по определенному слову в описании? Да/Нет")
         with_filter = input("Пользователь:  ").strip()
 
+    if with_filter.lower() == "да":
+        print("Программа: Введите слово")
+        key_word = input("Пользователь:  ").strip()
+
     # вывод результата
-    result = sort_by_date(filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper()))
-    print("Программа: Распечатываю итоговый список транзакций...")
-    print("Программа:\n"
-          f"Всего банковских операций в выборке: {len(result)}\n"
-          )
-    if source_chosen == "3":
-        result = filter_by_state(read_data_from_excel("data/transactions_excel.xlsx"), status_chosen.upper())
+    if source_chosen == "1":
+        result_1 = load_json("data/operations.json")
+    elif source_chosen == "2":
+        result_1 = read_data_from_csv("data/transactions.csv")
+    elif source_chosen == "3":
+        result_1 = read_data_from_excel("data/transactions_excel.xlsx")
+
+    result_2 = filter_by_state(result_1, status_chosen.upper())
 
     if is_sorted_by_date == "да":
-        result = sort_by_date(result, descending=(is_sorted_descending=="по убыванию"))
+        result_3 = sort_by_date(result_2, descending=(is_sorted_descending == "по убыванию"))
+    else:
+        result_3 = result_2
 
-    print(result)
+    if only_rub_transactions.lower() == "да":
+        result_4 = process_bank_search(result_3, "RUB")
+    else:
+        result_4 = result_3
+
+    if with_filter.lower() == "да":
+        result_5 = process_bank_search(result_4, key_word)
+    else:
+        result_5 = result_4
+
+    print("Программа: Распечатываю итоговый список транзакций...")
+    print("Программа:\n"
+          f"Всего банковских операций в выборке: {len(result_5)}\n"
+          )
+
+    for transaction in result_5:
+        print(
+            f"{transaction['date']} {transaction['description']}\n"
+            f"{mask_account_card(transaction['to'])}\n"
+            f"{transaction['amount']}"
+        )
 
 main()

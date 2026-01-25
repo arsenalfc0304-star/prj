@@ -25,8 +25,10 @@ def process_bank_search(dict_list: list[dict], search: str) -> list[dict]:
     """
     filtered_dict_list = []
     for transaction in dict_list:
-        if not re.search(search, transaction["description"]) is None:
-            filtered_dict_list.append(transaction)
+        for key in transaction.keys():
+            if not re.search(search.lower(), str(transaction[key]).lower()) is None:
+                filtered_dict_list.append(transaction)
+                continue
     return filtered_dict_list
 
 
