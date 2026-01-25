@@ -2,6 +2,7 @@ from src.utils import load_json
 from src.csv_excel_readers import read_data_from_csv, read_data_from_excel
 from src.processing import filter_by_state, sort_by_date, process_bank_search
 from src.widget import mask_account_card
+from datetime import datetime
 
 
 def main():
@@ -108,7 +109,7 @@ def main():
 
     for transaction in result_5:
         print(
-            f"{transaction['date']} {transaction['description']}\n"
+            f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}\n"
             f"{mask_account_card(transaction['to'])}\n"
             f"{transaction['amount']}"
         )
