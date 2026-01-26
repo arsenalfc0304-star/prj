@@ -103,15 +103,18 @@ def main():
         result_5 = result_4
 
     print("Программа: Распечатываю итоговый список транзакций...")
-    print("Программа:\n"
-          f"Всего банковских операций в выборке: {len(result_5)}\n"
-          )
 
-    for transaction in result_5:
-        print(
-            f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}\n"
-            f"{mask_account_card(transaction['to'])}\n"
-            f"{transaction['amount']}"
+    if len(result_5) > 0:
+        print("Программа:\n"
+              f"Всего банковских операций в выборке: {len(result_5)}\n"
         )
+        for transaction in result_5:
+            print(
+                f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}\n"
+                f"{mask_account_card(transaction['to'])}\n"
+                f"{transaction['amount']}"
+            )
+    else:
+        print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
 
 main()
