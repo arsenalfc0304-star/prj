@@ -112,7 +112,7 @@ def main():
             print(
                 f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}\n"
                 f"{mask_account_card(transaction['to'])}\n"
-                f"{transaction['amount']}"
+                f"Сумма: {transaction['amount']} {transaction['currency']['name']}"
             )
     else:
         print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
