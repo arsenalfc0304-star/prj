@@ -109,12 +109,12 @@ def main():
               f"Всего банковских операций в выборке: {len(result_5)}\n"
         )
         for transaction in result_5:
-            print(f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}\n")
+            print(f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}")
             if 'from' in transaction.keys():
-                print(f"{mask_account_card(transaction['from'])} {mask_account_card(transaction['to'])}\n")
+                print(f"{mask_account_card(str(transaction['from']))} -> {mask_account_card(str(transaction['to']))}")
             else:
-                print(f"{mask_account_card(transaction['to'])}\n")
-            print(f"Сумма: {transaction['amount']} {transaction['currency_name']}")
+                print(f"{mask_account_card(str(transaction['to']))}")
+            print(f"Сумма: {transaction['amount']} {transaction['currency_name']}\n")
     else:
         print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
 
