@@ -114,7 +114,14 @@ def main():
                 print(f"{mask_account_card(str(transaction['from']))} -> {mask_account_card(str(transaction['to']))}")
             else:
                 print(f"{mask_account_card(str(transaction['to']))}")
-            print(f"Сумма: {transaction['amount']} {transaction['currency_name']}\n")
+
+            if source_chosen == "1":
+                print(f"Сумма: {transaction['operationAmount']['amount']} {transaction['currency_name']}\n")
+            elif source_chosen == "2":
+                pass
+            elif source_chosen == "3":
+                print(f"Сумма: {transaction['amount']} {transaction['currency_name']}\n")
+
     else:
         print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
 
