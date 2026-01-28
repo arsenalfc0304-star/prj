@@ -117,9 +117,7 @@ def main():
 
             if source_chosen == "1":
                 print(f"Сумма: {transaction['operationAmount']['amount']} {transaction['currency_name']}\n")
-            elif source_chosen == "2":
-                pass
-            elif source_chosen == "3":
+            elif source_chosen == "2" or source_chosen == "3":
                 print(f"Сумма: {transaction['amount']} {transaction['currency_name']}\n")
 
     else:
