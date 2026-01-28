@@ -6,7 +6,7 @@ def read_data_from_csv(path: str) -> list:
     Функция для считывания финансовых операций из CSV принимает путь к файлу CSV в качестве аргумента,
     выдает список словарей с транзакциями
     """
-    data = pd.read_csv(path)
+    data = pd.read_csv(path, delimiter=";")
     return data.to_dict(orient="records")
 
 
