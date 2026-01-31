@@ -113,7 +113,7 @@ def main():
             if 'from' in transaction.keys():
                 print(f"{mask_account_card(str(transaction['from']))} -> {mask_account_card(str(transaction['to']))}")
             else:
-                print(f"{mask_account_card(str(transaction['to']))}")
+                print(f"-> {mask_account_card(str(transaction['to']))}")
 
             if source_chosen == "1":
                 print(f"Сумма: {transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']['name']}\n")
