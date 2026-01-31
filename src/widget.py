@@ -18,7 +18,7 @@ def mask_account_card(number: str) -> str:
     """
     for card in pay_cards:
         if card.lower() in number.lower():
-            return f"{card} {(get_mask_card_number((number.replace(card, "")).strip()))}"
+            return f"{card} {get_mask_card_number((number.replace(card, "").strip()))}"
     if "Счет" in number:
         return f"Счет {get_mask_account(number.replace("Счет ", ""))}"
     else:
