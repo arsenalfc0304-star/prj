@@ -7,8 +7,14 @@ def mask_account_card(number: str) -> str:
     """
     if "Visa Platinum" in number:
         return "Visa Platinum " + get_mask_card_number(number.replace("Visa Platinum ", ""))
+    elif "Visa Classic" in number:
+        return "Visa Classic " + get_mask_card_number(number.replace("Visa Classic ", ""))
+    elif "MasterCard" in number:
+        return "MasterCard " + get_mask_card_number(number.replace("MasterCard ", ""))
     elif "Maestro" in number:
         return "Maestro " + get_mask_card_number(number.replace("Maestro ", ""))
+    elif "МИР" in number:
+        return "МИР " + get_mask_card_number(number.replace("МИР ", ""))
     elif "Счет" in number:
         return "Счет " + get_mask_account(number.replace("Счет ", ""))
     else:
