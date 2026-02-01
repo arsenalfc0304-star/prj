@@ -7,7 +7,7 @@ def filter_by_state(dict_list: list, state: str = "EXECUTED") -> list:
     принимает список словарей и опционально значение для ключа state (по умолчанию "EXECUTED"),
     возвращает новый список словарей, содержащий только словари, у которых ключ state соответствует указанному значению
     """
-    return list(filter(lambda x: x['state'] == state if 'state' in x.keys() else {}, dict_list))
+    return list(filter(lambda x: x["state"] == state if "state" in x.keys() else {}, dict_list))
 
 
 def sort_by_date(dict_list: list, descending: bool = True) -> list:
