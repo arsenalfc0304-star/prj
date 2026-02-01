@@ -20,10 +20,10 @@ def mask_account_card(number: str) -> str:
     for card in pay_cards:
         if card.lower() in number.lower():
             return f"{number[0:len(card)]} {get_mask_card_number(number[len(card):].strip())}"
-    if "Счет" in number:
-        return f"Счет {get_mask_account(number[4:].strip())}"
+    if "Счет".lower() in number.lower():
+        return f"{number[0:len("Счет")]} {get_mask_account(number[len("Счет"):].strip())}"
     else:
-        return "Номер введен некорректно"
+        return ""#"Номер введен некорректно"
 
 
 def get_date(date: str) -> str:
