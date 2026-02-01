@@ -111,7 +111,6 @@ def main():
             print(f"{transaction['date'][8:10]}.{transaction['date'][5:7]}.{transaction['date'][0:4]} {transaction['description']}")
             if 'from' in transaction.keys() and str(transaction['from']) is not None:
                 print(f"{mask_account_card(str(transaction['from']))} -> {mask_account_card(str(transaction['to']))}")
-                print(str(transaction['from']))
             else:
                 print(f"-> {mask_account_card(str(transaction['to']))}")
 

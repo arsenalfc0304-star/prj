@@ -5,7 +5,7 @@ def get_mask_card_number(card_number: str) -> str:
     """
     принимает на вход номер карты и возвращает ее маску
     """
-    if not card_number.isdigit() or len(card_number) != 16 or card_number[0] == 0:
+    if len(card_number) != 16 or card_number[0] == 0 or not card_number.isdigit():
         masks_logger.error("номер карты введен некорректно")
         return "Номер карты введен некорректно"
     else:
