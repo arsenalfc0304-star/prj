@@ -1,4 +1,4 @@
-from loggers import masks_logger
+from src.loggers import masks_logger
 
 
 def get_mask_card_number(card_number: str) -> str:

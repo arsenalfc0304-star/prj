@@ -115,9 +115,9 @@ def main():
                 print(f"-> {mask_account_card(str(transaction['to']))}")
 
             if source_chosen == "1":
-                print(f"Сумма: {transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']['name']}\n")
+                print(f"Сумма: {transaction['operationAmount']['amount']} {transaction['operationAmount']['currency']['code']}\n")
             elif source_chosen == "2" or source_chosen == "3":
-                print(f"Сумма: {transaction['amount']} {transaction['currency_name']}\n")
+                print(f"Сумма: {transaction['amount']} {transaction['currency_code']}\n")
 
     else:
         print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
