@@ -1,8 +1,8 @@
 import json
 
-from external_api import get_api_convertion_to_rub
+from src.external_api import get_api_convertion_to_rub
 
-from loggers import utils_logger
+from src.loggers import utils_logger
 
 
 def load_json(path):
